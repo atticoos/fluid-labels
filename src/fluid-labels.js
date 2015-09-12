@@ -1,9 +1,12 @@
 (function ($) {
-  var DEFAULTS = {
-    top: 5
+  var DEFAULT_OPTIONS = {
+    inputOffsetTop: 5,
+    animationDuration: 200,
+    focusClass: null
   };
 
   function FluidLabel (container, options) {
+    this.options = $.extend({}, DEFAULT_OPTIONS, options || {});
     this.container = $(container);
     this.element = this.container.find('input');
     this.label = this.container.find('label');
@@ -18,13 +21,19 @@
       }
     }
 
-    this.element.on('keyup', this.onValueChanged.bind(this));
     if (this.element.val().trim().length > 0) {
       this.showLabel(false);
     } else {
       this.hideLabel(false);
     }
-    this.label.css({left: this.element.position().left, top: 5});
+    this.label.css({left: this.element.position().left, top: this.options.labelTopOffset});
+
+    this.element.on('keyup', this.onValueChanged.bind(this));
+    this.element.on('change', this.onValueChanged.bind(this));
+    if (this.options.focusClass) {
+      this.element.on('focus', this.onFocused.bind(this));
+      this.element.on('blur', this.onBlurred.bind(this));
+    }
   }
 
   FluidLabel.prototype.onValueChanged = function () {
@@ -38,28 +47,33 @@
 
   FluidLabel.prototype.showLabel = function (animation) {
     if (animation !== false) {
-      this.label.fadeIn(200);
-      this.element.animate({top: '5px'}, 200);
+      this.label.fadeIn(this.options.animationDuration);
+      this.element.animate({top: this.options.inputOffsetTop}, this.options.animationDuration);
     } else {
       this.label.show();
-      this.element.css({top: '5px'});
+      this.element.css({top: this.options.inputOffsetTop});
     }
     this.active = true;
-    console.log('showing');
   };
 
   FluidLabel.prototype.hideLabel = function (animation) {
     animation = animation !== false;
     if (animation !== false) {
-      this.label.fadeOut(200);
-      this.element.animate({top: 0}, 200);
+      this.label.fadeOut(this.options.animationDuration);
+      this.element.animate({top: 0}, this.options.animationDuration);
     } else {
       this.label.hide();
       this.element.css({top: 0});
     }
-
     this.active = false;
-    console.log('hiding');
+  };
+
+  FluidLabel.prototype.onFocused = function () {
+    this.container.addClass(this.options.focusClass);
+  };
+
+  FluidLabel.prototype.onBlurred = function () {
+    this.container.removeClass(this.options.focusClass);
   };
 
   $.fn.fluidLabel = function (options) {
