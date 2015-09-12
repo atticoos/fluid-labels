@@ -1,0 +1,24 @@
+#pop {
+  margin: 300px auto;
+  display: block;
+  width: 75px;
+  height: 75px;
+}
+
+#pop .primary {
+  background-image: url(https://vox.space/files/jquery/classysocial/images/share_core_square.jpg);
+  background-size: contain;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  margin: auto;
+  display: block;
+}
+
+#pop .secondary {
+  background-image: url(https://vox.space/files/jquery/classysocial/images/default/twitter.png);
+  background-size: contain;
+  height: 32px;
+  width: 32px;
+  display: block;
+}

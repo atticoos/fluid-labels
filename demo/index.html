@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="../dist/popper.css" />
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../dist/nicer-fields.js"></script>
+  </head>
+  <body>
+    <div class="fluid-label">
+      <input type="text" placeholder="Your Name" />
+      <label>Your Name</label>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      $('.fluid-label').fluidLabel({
+        top: '10px',
+        left: '10px'
+      });
+    });
+    </script>
+  </body>
+</html>

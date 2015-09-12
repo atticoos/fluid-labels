@@ -1,0 +1,12 @@
+{
+  "name": "nicer-fields",
+  "version": "1.0.0",
+  "authors": [
+    "Atticus White <contact@atticuswhite.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "jquery.easing": "~1.3.1"
+  }
+}
