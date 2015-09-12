@@ -1,15 +1,19 @@
 (function ($) {
 
-  function FluidLabel (element, options) {
-    this.element = $(element);
-    this.label = this.element.find('label');
-    this.element.on('change', this.onValueChanged.bind(this));
-    this.element.on('mousedown', this.onValueChanged.bind(this));
-    this.onValueChanged();
+  function FluidLabel (container, options) {
+    this.container = $(container);
+    this.element = this.container.find('input');
+    this.label = this.container.find('label');
+    this.element.on('keyup', this.onValueChanged.bind(this));
+    if (this.element.val().trim().length > 0) {
+      this.showLabel(false);
+    } else {
+      this.hideLabel(false);
+    }
   }
 
   FluidLabel.prototype.onValueChanged = function () {
-    var value = $(this).val().trim();
+    var value = this.element.val();
     if (value.length > 0 && !this.active) {
       this.showLabel();
     } else if (value.length === 0 && this.active) {
@@ -17,12 +21,30 @@
     }
   };
 
-  FluidLabel.prototype.showLabel = function () {
-    this.label.show();
+  FluidLabel.prototype.showLabel = function (animation) {
+    if (animation !== false) {
+      this.label.fadeIn(200);
+      this.element.animate({top: '5px'}, 200);
+    } else {
+      this.label.show();
+      this.element.css({top: '5px'});
+    }
+    this.active = true;
+    console.log('showing');
   };
 
-  FluidLabel.prototype.hideLabel = function () {
-    this.label.hide();
+  FluidLabel.prototype.hideLabel = function (animation) {
+    animation = animation !== false;
+    if (animation !== false) {
+      this.label.fadeOut(200);
+      this.element.animate({top: 0}, 200);
+    } else {
+      this.label.hide();
+      this.element.css({top: 0});
+    }
+
+    this.active = false;
+    console.log('hiding');
   };
 
   $.fn.fluidLabel = function (options) {
