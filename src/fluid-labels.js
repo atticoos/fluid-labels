@@ -1,15 +1,30 @@
 (function ($) {
+  var DEFAULTS = {
+    top: 5
+  };
 
   function FluidLabel (container, options) {
     this.container = $(container);
     this.element = this.container.find('input');
     this.label = this.container.find('label');
+
+    if (this.label.length === 0) {
+      if (this.element.attr('placeholder')) {
+        this.label = $('<label>').text(this.element.attr('placeholder'));
+        this.label.insertAfter(this.element);
+      } else {
+        // nothing to do here
+        return;
+      }
+    }
+
     this.element.on('keyup', this.onValueChanged.bind(this));
     if (this.element.val().trim().length > 0) {
       this.showLabel(false);
     } else {
       this.hideLabel(false);
     }
+    this.label.css({left: this.element.position().left, top: 5});
   }
 
   FluidLabel.prototype.onValueChanged = function () {
