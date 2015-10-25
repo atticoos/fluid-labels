@@ -4,7 +4,8 @@
   border-radius: 2px;
   display: inline-block;
 }
-.fluid-label input {
+.fluid-label input,
+.fluid-label textarea {
   border: none;
   outline: none;
   position: relative;
