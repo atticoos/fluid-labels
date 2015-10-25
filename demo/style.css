@@ -1,24 +1,25 @@
-#pop {
-  margin: 300px auto;
-  display: block;
-  width: 75px;
-  height: 75px;
+body {
+  font-family: 'Helvetica';
+}
+.fluid-label {
+  position: relative;
+  border: 1px solid lightgray;
 }
 
-#pop .primary {
-  background-image: url(https://vox.space/files/jquery/classysocial/images/share_core_square.jpg);
-  background-size: contain;
-  border-radius: 50%;
-  width: 75px;
-  height: 75px;
-  margin: auto;
-  display: block;
+.fluid-label input {
+  font-size: 16px;
 }
 
-#pop .secondary {
-  background-image: url(https://vox.space/files/jquery/classysocial/images/default/twitter.png);
-  background-size: contain;
-  height: 32px;
-  width: 32px;
-  display: block;
+.fluid-label label {
+  font-size: 12px;
+  color: lightgray;
+  top: 5px;
+}
+
+.fluid-label.focused {
+  border-color: #298eea;
+}
+
+.fluid-label.focused label {
+  color: #298eea;
 }

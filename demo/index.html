@@ -1,20 +1,26 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="../dist/popper.css" />
+    <link rel="stylesheet" type="text/css" href="../dist/fluid-labels.css" />
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="../dist/nicer-fields.js"></script>
+    <script type="text/javascript" src="../dist/fluid-labels.js"></script>
   </head>
   <body>
     <div class="fluid-label">
       <input type="text" placeholder="Your Name" />
       <label>Your Name</label>
     </div>
+    <div class="fluid-label">
+      <input type="email" placeholder="Your Email" />
+      <label>Your Email</label>
+    </div>
+    <div class="fluid-label">
+      <input type="text" placeholder="Something Else" />
+    </div>
     <script type="text/javascript">
     $(document).ready(function () {
       $('.fluid-label').fluidLabel({
-        top: '10px',
-        left: '10px'
+        focusClass: 'focused'
       });
     });
     </script>
