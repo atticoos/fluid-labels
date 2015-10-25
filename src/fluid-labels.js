@@ -8,7 +8,7 @@
   function FluidLabel (container, options) {
     this.options = $.extend({}, DEFAULT_OPTIONS, options || {});
     this.container = $(container);
-    this.element = this.container.find('input');
+    this.element = this.container.find('input,textarea');
     this.label = this.container.find('label');
 
     if (this.label.length === 0) {
