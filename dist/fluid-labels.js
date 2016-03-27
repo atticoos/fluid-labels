@@ -6,6 +6,7 @@
   };
 
   function FluidLabel (container, options) {
+    var self = this;
     this.options = $.extend({}, DEFAULT_OPTIONS, options || {});
     this.container = $(container);
     this.element = this.container.find('input,textarea');
@@ -28,11 +29,19 @@
     }
     this.label.css({left: this.element.position().left, top: this.options.labelTopOffset});
 
-    this.element.on('keyup', this.onValueChanged.bind(this));
-    this.element.on('change', this.onValueChanged.bind(this));
+    this.element.on('keyup', function () {
+      self.onValueChanged();
+    });
+    this.element.on('change', function () {
+      self.onValueChanged();
+    });
     if (this.options.focusClass) {
-      this.element.on('focus', this.onFocused.bind(this));
-      this.element.on('blur', this.onBlurred.bind(this));
+      this.element.on('focus', function () {
+        self.onFocused();
+      });
+      this.element.on('blur', function () {
+        self.blurred();
+      });
     }
   }
 
