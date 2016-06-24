@@ -40,7 +40,7 @@
         self.onFocused();
       });
       this.element.on('blur', function () {
-        self.blurred();
+        self.onBlurred();
       });
     }
   }
